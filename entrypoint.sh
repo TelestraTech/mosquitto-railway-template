@@ -5,7 +5,7 @@ set -e
 
 # Check if MOSQUITTO_USERNAME and MOSQUITTO_PASSWORD environment variables are defined
 if [ -z "$MOSQUITTO_USERNAME" ] || [ -z "$MOSQUITTO_PASSWORD" ]; then
-  echo "ERROr: Environment variables MOSQUITTO_USERNAME and MOSQUITTO_PASSWORD must be defined."
+  echo "ERROR: Environment variables MOSQUITTO_USERNAME and MOSQUITTO_PASSWORD must be defined."
   exit 1
 fi
 
