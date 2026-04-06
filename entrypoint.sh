@@ -9,11 +9,17 @@ if [ -z "$MOSQUITTO_USERNAME" ] || [ -z "$MOSQUITTO_PASSWORD" ]; then
   exit 1
 fi
 
+# Check if GUEST_PASSWORD environment variable is defined
+if [ -z "$GUEST_PASSWORD" ]; then
+  echo "ERROR: Environment variable GUEST_PASSWORD must be defined."
+  exit 1
+fi
+
 # Create password file with the primary user (-c creates/overwrites the file)
 mosquitto_passwd -b -c /mosquitto/config/password_file "$MOSQUITTO_USERNAME" "$MOSQUITTO_PASSWORD"
 
 # Add the guest user (append to existing file, no -c flag)
-mosquitto_passwd -b /mosquitto/config/password_file guest Telestra_12345
+mosquitto_passwd -b /mosquitto/config/password_file guest "$GUEST_PASSWORD"
 
 # Define "mosquitto" as owner of the password file
 chown mosquitto:mosquitto /mosquitto/config/password_file
