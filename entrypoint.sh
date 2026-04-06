@@ -29,7 +29,7 @@ if [ ! -f /mosquitto/config/acl_file ]; then
   echo "ACL file not found — creating it now."
   cat > /mosquitto/config/acl_file <<'EOF'
 user guest
-topic write Telestra DQM Data
+topic write Telestra\ DQM\ Data
 EOF
 fi
 
