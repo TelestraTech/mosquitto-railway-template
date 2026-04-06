@@ -15,6 +15,9 @@ if [ -z "$GUEST_USERNAME" ] || [ -z "$GUEST_PASSWORD" ]; then
   exit 1
 fi
 
+# Remove old password file if it exists (prevents write-permission errors on restart)
+rm -f /mosquitto/config/password_file
+
 # Create password file with the primary user (-c creates/overwrites the file)
 mosquitto_passwd -b -c /mosquitto/config/password_file "$MOSQUITTO_USERNAME" "$MOSQUITTO_PASSWORD"
 
