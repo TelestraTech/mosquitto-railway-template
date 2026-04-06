@@ -1,7 +1,7 @@
 # ACL rules for Mosquitto broker
 # ──────────────────────────────────────────────────────────────────────────────
-# Guest user: publish-only access to the Telestra DQM Data topic.
+# Guest user: publish and subscribe access to the Telestra DQM Data topic.
 # Multiple devices/computers may share these credentials simultaneously.
 # ──────────────────────────────────────────────────────────────────────────────
 user guest
-topic write Telestra DQM Data
+topic readwrite Telestra DQM Data
