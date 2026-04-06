@@ -3,6 +3,9 @@ FROM eclipse-mosquitto:latest
 # Copy custom configuration file
 COPY mosquitto.conf /mosquitto/config/mosquitto.conf
 
+# Copy ACL file
+COPY mosquitto/config/acl_file /mosquitto/config/acl_file
+
 RUN mkdir -p /mosquitto/data /mosquitto/log && chown -R mosquitto:mosquitto /mosquitto/data /mosquitto/log
 
 # Copy entrypoint
