@@ -24,8 +24,30 @@ mosquitto_passwd -b /mosquitto/config/password_file "$GUEST_USERNAME" "$GUEST_PA
 # Define "mosquitto" as owner of the password file
 chown mosquitto:mosquitto /mosquitto/config/password_file
 
+# Create the ACL file from scratch if it doesn't exist
+if [ ! -f /mosquitto/config/acl_file ]; then
+  echo "ACL file not found — creating it now."
+  cat > /mosquitto/config/acl_file <<'EOF'
+user guest
+topic write Telestra DQM Data
+EOF
+fi
+
 # Ensure the ACL file has correct ownership
 chown mosquitto:mosquitto /mosquitto/config/acl_file
+
+# Verify both files exist and are non-empty before starting the broker
+if [ ! -s /mosquitto/config/password_file ]; then
+  echo "ERROR: password_file is missing or empty."
+  exit 1
+fi
+
+if [ ! -s /mosquitto/config/acl_file ]; then
+  echo "ERROR: acl_file is missing or empty."
+  exit 1
+fi
+
+echo "password_file and acl_file verified — starting Mosquitto."
 
 # Passes execution to the container's original command (starts Mosquitto)
 # "$@" represents all arguments passed to the script, which in our case
