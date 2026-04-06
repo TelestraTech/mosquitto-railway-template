@@ -13,7 +13,7 @@ fi
 mosquitto_passwd -b -c /mosquitto/config/password_file "$MOSQUITTO_USERNAME" "$MOSQUITTO_PASSWORD"
 
 # Add the guest user (append to existing file, no -c flag)
-mosquitto_passwd -b /mosquitto/config/password_file guest guest123
+mosquitto_passwd -b /mosquitto/config/password_file guest Telestra_12345
 
 # Define "mosquitto" as owner of the password file
 chown mosquitto:mosquitto /mosquitto/config/password_file
