@@ -27,15 +27,6 @@ mosquitto_passwd -b /mosquitto/config/password_file "$GUEST_USERNAME" "$GUEST_PA
 # Define "mosquitto" as owner of the password file
 chown mosquitto:mosquitto /mosquitto/config/password_file
 
-# Create the ACL file from scratch if it doesn't exist
-if [ ! -f /mosquitto/config/acl_file ]; then
-  echo "ACL file not found — creating it now."
-  cat > /mosquitto/config/acl_file <<'EOF'
-user guest
-topic readwrite Telestra\ DQM\ Data
-EOF
-fi
-
 # Ensure the ACL file has correct ownership
 chown mosquitto:mosquitto /mosquitto/config/acl_file
 
