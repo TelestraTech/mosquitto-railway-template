@@ -1,8 +1,7 @@
 # ACL rules for Mosquitto broker
 # ──────────────────────────────────────────────────────────────────────────────
-# Guest user: publish and subscribe access to topic hierarchies.
+# Guest user: full read/write access to all topics.
 # Multiple devices/computers may share these credentials simultaneously.
 # ──────────────────────────────────────────────────────────────────────────────
 user guest
-topic readwrite Telestra\ DQM\ Data/#
-topic readwrite Parker2026/#
+topic readwrite #
