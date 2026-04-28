@@ -4,5 +4,5 @@
 # Multiple devices/computers may share these credentials simultaneously.
 # ──────────────────────────────────────────────────────────────────────────────
 user guest
-topic readwrite Telestra DQM Data/#
+topic readwrite Telestra\ DQM\ Data/#
 topic readwrite Parker2026/#
